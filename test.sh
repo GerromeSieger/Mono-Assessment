@@ -9,9 +9,6 @@ DEBIAN_FRONTEND=noninteractive sudo apt install -y nginx curl
 sudo rm -rf /var/www/html/*
 sudo cp -r ./build/* /var/www/html/
 
-# Start nginx
-service nginx start
-
 sleep 5
 
 RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost)
@@ -23,6 +20,3 @@ else
   echo "Failed! Expected 200 response, got $RESPONSE"
   exit 1
 fi
-
-# Stop nginx
-sudo service nginx stop
