@@ -3,11 +3,14 @@
 sudo apt update
 
 # Install nginx without interactive prompts
-DEBIAN_FRONTEND=noninteractive sudo apt install -y nginx curl
+DEBIAN_FRONTEND=noninteractive apt install -y nginx curl
 
 # Remove existing content and copy new content
 sudo rm -rf /var/www/html/*
 sudo cp -r ./build/* /var/www/html/
+
+# Start nginx
+sudo service nginx start
 
 sleep 5
 
@@ -20,3 +23,6 @@ else
   echo "Failed! Expected 200 response, got $RESPONSE"
   exit 1
 fi
+
+# Stop nginx
+sudo service nginx stop
